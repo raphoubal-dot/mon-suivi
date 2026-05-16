@@ -15,15 +15,13 @@
 body{background:#0D0D1A;color:#F0F0F0;font-family:'DM Sans',sans-serif;min-height:100vh;padding-bottom:40px;}
 input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none;}
 input[type=number]{-moz-appearance:textfield;}
-input{outline:none;}
-button{font-family:'DM Sans',sans-serif;}
+input,button{outline:none;font-family:'DM Sans',sans-serif;}
 
 #header{background:linear-gradient(135deg,#1A1A2E,#16213E);padding:20px 16px 14px;border-bottom:2px solid #FF6B35;position:sticky;top:0;z-index:10;}
 .app-title{display:flex;align-items:center;gap:8px;margin-bottom:2px;}
 .app-title h1{font-size:17px;font-weight:900;}
 .app-sub{font-size:10px;color:#888;letter-spacing:1px;}
-.progress-bar-wrap{margin-top:10px;}
-.progress-labels{display:flex;justify-content:space-between;margin-bottom:3px;}
+.progress-labels{display:flex;justify-content:space-between;margin-bottom:3px;margin-top:10px;}
 .progress-labels span:first-child{font-size:10px;color:#FF6B35;font-weight:700;}
 .progress-labels span:last-child{font-size:10px;color:#4CAF50;font-weight:700;}
 .progress-track{height:6px;background:#1E1E3A;border-radius:4px;overflow:hidden;}
@@ -39,35 +37,30 @@ button{font-family:'DM Sans',sans-serif;}
 .panel.active{display:block;}
 
 .month-nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
-.month-nav button{background:#1E1E3A;border:none;border-radius:8px;color:#FF6B35;font-size:20px;width:36px;height:36px;cursor:pointer;display:flex;align-items:center;justify-content:center;}
-.month-nav button:disabled{background:transparent;color:#2A2A3A;cursor:default;}
+.month-nav button{background:#1E1E3A;border:none;border-radius:8px;color:#FF6B35;font-size:20px;width:36px;height:36px;cursor:pointer;}
 .month-nav span{font-weight:700;font-size:15px;}
 
 .calendar{background:#12122A;border-radius:12px;padding:12px;margin-bottom:10px;}
 .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;}
-.cal-header-day{text-align:center;font-size:9px;color:#444;font-weight:700;padding-bottom:3px;}
 .cal-day{border-radius:7px;padding:5px 2px;text-align:center;cursor:pointer;border:1px solid transparent;transition:background 0.1s;}
-.cal-day .day-num{font-size:9px;color:#555;}
-.cal-day .day-weight{font-size:10px;font-weight:700;line-height:1.3;}
-.cal-day.empty{cursor:default;}
-.cal-day.future{opacity:0.3;cursor:default;}
+.cal-day-num{font-size:9px;color:#555;}
+.cal-day-weight{font-size:10px;font-weight:700;line-height:1.3;color:#2A2A4A;}
 .cal-day.has-weight{background:#0D2B0D;}
-.cal-day.has-weight .day-weight{color:#4CAF50;}
+.cal-day.has-weight .cal-day-weight{color:#4CAF50;}
 .cal-day.selected{background:#FF6B35!important;}
-.cal-day.selected .day-num{color:#fff;}
-.cal-day.selected .day-weight{color:#fff!important;}
-.cal-day.today{border-color:#FF6B3588;}
-.cal-day.no-weight .day-weight{color:#2A2A4A;}
+.cal-day.selected .cal-day-num{color:#fff;}
+.cal-day.selected .cal-day-weight{color:#fff!important;}
+.cal-day.today{border-color:#FF6B3588!important;}
 
 .input-panel{background:#12122A;border-radius:12px;padding:14px;margin-bottom:10px;}
-.input-panel label{font-size:11px;color:#888;font-weight:600;letter-spacing:1px;display:block;margin-bottom:8px;}
-.input-row{display:flex;gap:8px;align-items:stretch;}
-.weight-input{flex:1;background:#1E1E3A;border:1px solid #2A2A4A;border-radius:8px;color:#F0F0F0;padding:12px;font-size:22px;font-family:‘DM Sans’,sans-serif;text-align:center;font-weight:900;}
+.input-label{font-size:11px;color:#888;font-weight:600;letter-spacing:1px;display:block;margin-bottom:8px;}
+.input-row{display:flex;gap:8px;}
+.weight-input{flex:1;background:#1E1E3A;border:1px solid #2A2A4A;border-radius:8px;color:#F0F0F0;padding:12px;font-size:22px;text-align:center;font-weight:900;}
 .btn-save{background:#FF6B35;border:none;border-radius:8px;color:#fff;padding:0 18px;font-weight:700;font-size:16px;cursor:pointer;}
-.btn-delete{background:#1E1E1E;border:1px solid #3A1A1A;border-radius:8px;color:#f44336;padding:0 12px;font-weight:700;font-size:14px;cursor:pointer;}
-.saved-confirm{margin-top:8px;font-size:11px;color:#4CAF50;text-align:center;}
+.btn-del{background:#1E1E1E;border:1px solid #3A1A1A;border-radius:8px;color:#f44336;padding:0 12px;font-weight:700;font-size:14px;cursor:pointer;}
+.saved-msg{margin-top:8px;font-size:11px;color:#4CAF50;text-align:center;}
 
-.chart-box{background:#12122A;border-radius:12px;padding:14px 10px 10px;margin-bottom:10px;}
+.chart-box{background:#12122A;border-radius:12px;padding:14px 10px 10px;margin-bottom:10px;display:none;}
 .chart-box label{font-size:11px;color:#666;font-weight:600;letter-spacing:1px;display:block;margin-bottom:8px;}
 
 .week-avg{display:flex;justify-content:space-between;align-items:center;background:#12122A;border-radius:8px;padding:9px 14px;margin-bottom:6px;}
@@ -75,27 +68,27 @@ button{font-family:'DM Sans',sans-serif;}
 .week-avg span:last-child{font-size:13px;font-weight:700;color:#4CAF50;}
 
 .filter-chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;}
-.chip{padding:5px 10px;border-radius:16px;border:1px solid;font-size:11px;font-weight:600;cursor:pointer;font-family:‘DM Sans’,sans-serif;transition:all 0.2s;}
+.chip{padding:5px 10px;border-radius:16px;border:1px solid;font-size:11px;font-weight:600;cursor:pointer;transition:all 0.2s;}
 
 .measure-form{background:#12122A;border-radius:12px;padding:14px;margin-bottom:12px;}
-.measure-form label{font-size:11px;color:#666;font-weight:600;letter-spacing:1px;display:block;margin-bottom:10px;}
-.date-input{width:100%;background:#1E1E3A;border:1px solid #2A2A4A;border-radius:8px;color:#F0F0F0;padding:10px 12px;font-size:13px;font-family:‘DM Sans’,sans-serif;margin-bottom:10px;}
-.measure-row{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
-.measure-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
-.measure-row span{flex:1;font-size:12px;color:#aaa;}
-.measure-input{width:70px;background:#1E1E3A;border:1px solid #2A2A4A;border-radius:8px;color:#F0F0F0;padding:8px;font-size:14px;font-family:‘DM Sans’,sans-serif;text-align:center;font-weight:700;}
-.measure-unit{font-size:11px;color:#555;width:18px;}
-.btn-save-measures{width:100%;background:#FF6B35;border:none;border-radius:8px;color:#fff;padding:12px;font-weight:700;font-size:14px;cursor:pointer;margin-top:6px;}
+.measure-form > label{font-size:11px;color:#666;font-weight:600;letter-spacing:1px;display:block;margin-bottom:10px;}
+.date-input{width:100%;background:#1E1E3A;border:1px solid #2A2A4A;border-radius:8px;color:#F0F0F0;padding:10px 12px;font-size:13px;margin-bottom:10px;}
+.m-row{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+.m-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.m-label{flex:1;font-size:12px;color:#aaa;}
+.m-input{width:70px;background:#1E1E3A;border:1px solid #2A2A4A;border-radius:8px;color:#F0F0F0;padding:8px;font-size:14px;text-align:center;font-weight:700;}
+.m-unit{font-size:11px;color:#555;width:18px;}
+.btn-save-m{width:100%;background:#FF6B35;border:none;border-radius:8px;color:#fff;padding:12px;font-weight:700;font-size:14px;cursor:pointer;margin-top:6px;}
 
-.history{background:#12122A;border-radius:12px;padding:14px;}
-.history label{font-size:11px;color:#666;font-weight:600;letter-spacing:1px;display:block;margin-bottom:12px;}
-.history-entry{margin-bottom:14px;border-bottom:1px solid #1E1E3A;padding-bottom:14px;}
-.history-date{font-size:12px;font-weight:700;color:#FF6B35;margin-bottom:8px;}
-.history-cards{display:flex;flex-wrap:wrap;gap:6px;}
-.history-card{background:#1A1A2E;border-radius:7px;padding:6px 10px;border-left:3px solid;min-width:90px;}
-.history-card .hc-label{font-size:9px;color:#555;margin-bottom:2px;}
-.history-card .hc-val{font-size:13px;font-weight:700;}
-.history-card .hc-delta{font-size:10px;font-weight:600;}
+.history-box{background:#12122A;border-radius:12px;padding:14px;display:none;}
+.history-box > label{font-size:11px;color:#666;font-weight:600;letter-spacing:1px;display:block;margin-bottom:12px;}
+.h-entry{margin-bottom:14px;border-bottom:1px solid #1E1E3A;padding-bottom:14px;}
+.h-date{font-size:12px;font-weight:700;color:#FF6B35;margin-bottom:8px;}
+.h-cards{display:flex;flex-wrap:wrap;gap:6px;}
+.h-card{background:#1A1A2E;border-radius:7px;padding:6px 10px;border-left:3px solid;min-width:90px;}
+.h-card-label{font-size:9px;color:#555;margin-bottom:2px;}
+.h-card-val{font-size:13px;font-weight:700;}
+.h-card-delta{font-size:10px;font-weight:600;}
 
 .no-data{background:#12122A;border-radius:12px;padding:24px;margin-bottom:12px;text-align:center;color:#444;font-size:13px;}
 </style>
@@ -106,11 +99,9 @@ button{font-family:'DM Sans',sans-serif;}
 <div id="header">
   <div class="app-title"><span>🔥</span><h1>Mon Suivi Physique</h1></div>
   <p class="app-sub">INSANITY 6j/7 · 2200 kcal · OBJECTIF 67 kg</p>
-  <div class="progress-bar-wrap">
-    <div class="progress-labels"><span>Départ 77.4 kg</span><span>Objectif 67 kg</span></div>
-    <div class="progress-track"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
-    <p class="progress-pct" id="progressPct">0.0% atteint</p>
-  </div>
+  <div class="progress-labels"><span>Départ 77.4 kg</span><span>Objectif 67 kg</span></div>
+  <div class="progress-track"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+  <p class="progress-pct" id="progressPct">0.0% atteint</p>
   <div class="tabs">
     <button class="tab-btn active" onclick="switchTab('poids')">⚖️ Poids</button>
     <button class="tab-btn inactive" onclick="switchTab('mesures')">📏 Mesures</button>
@@ -118,256 +109,169 @@ button{font-family:'DM Sans',sans-serif;}
 </div>
 
 <div id="content">
-
-<!-- POIDS -->
-
-<div id="panel-poids" class="panel active">
-  <div class="month-nav">
-    <button id="btnPrev" onclick="changeMonth(-1)">‹</button>
-    <span id="monthLabel"></span>
-    <button id="btnNext" onclick="changeMonth(1)">›</button>
-  </div>
-  <div class="calendar"><div class="cal-grid" id="calGrid"></div></div>
-  <div class="input-panel">
-    <label id="inputLabel">PESÉE</label>
-    <div class="input-row">
-      <input class="weight-input" type="number" step="0.05" min="40" max="200" placeholder="77.4" id="weightInput" inputmode="decimal"/>
-      <button class="btn-save" onclick="saveWeight()">✓</button>
-      <button class="btn-delete" id="btnDelete" onclick="deleteWeight()" style="display:none">✕</button>
+  <div id="panel-poids" class="panel active">
+    <div class="month-nav">
+      <button onclick="changeMonth(-1)">‹</button>
+      <span id="monthLabel"></span>
+      <button onclick="changeMonth(1)">›</button>
     </div>
-    <p class="saved-confirm" id="savedConfirm"></p>
+    <div class="calendar"><div class="cal-grid" id="calGrid"></div></div>
+    <div class="input-panel">
+      <label class="input-label" id="inputLabel">PESÉE</label>
+      <div class="input-row">
+        <input class="weight-input" type="number" step="0.05" min="40" max="200" placeholder="ex: 77.4" id="weightInput" inputmode="decimal"/>
+        <button class="btn-save" onclick="saveWeight()">✓</button>
+        <button class="btn-del" id="btnDel" onclick="deleteWeight()" style="display:none">✕</button>
+      </div>
+      <p class="saved-msg" id="savedMsg"></p>
+    </div>
+    <div class="chart-box" id="chartBox">
+      <label>COURBE DU MOIS</label>
+      <canvas id="weightChart" height="140"></canvas>
+    </div>
+    <div id="weekAvgs"></div>
   </div>
-  <div class="chart-box" id="chartBox" style="display:none">
-    <label>COURBE DU MOIS</label>
-    <canvas id="weightChart" height="140"></canvas>
-  </div>
-  <div id="weekAvgs"></div>
-</div>
 
-<!-- MESURES -->
-
-<div id="panel-mesures" class="panel">
-  <div class="filter-chips" id="filterChips"></div>
-  <div class="chart-box" id="measureChartBox" style="display:none">
-    <label>ÉVOLUTION</label>
-    <canvas id="measureChart" height="160"></canvas>
+  <div id="panel-mesures" class="panel">
+    <div class="filter-chips" id="filterChips"></div>
+    <div class="chart-box" id="mChartBox">
+      <label>ÉVOLUTION</label>
+      <canvas id="measureChart" height="160"></canvas>
+    </div>
+    <div class="no-data" id="noMChart">Ajoute 2 séries de mesures pour voir l'évolution 📉</div>
+    <div class="measure-form">
+      <label>NOUVELLE MESURE</label>
+      <input class="date-input" type="date" id="mDateInput"/>
+      <div id="mRows"></div>
+      <button class="btn-save-m" onclick="saveMeasures()">Enregistrer</button>
+    </div>
+    <div class="history-box" id="histBox">
+      <label>HISTORIQUE</label>
+      <div id="histContent"></div>
+    </div>
   </div>
-  <div class="no-data" id="noMeasureChart">Ajoute 2 séries de mesures pour voir l'évolution 📉</div>
-  <div class="measure-form">
-    <label>NOUVELLE MESURE</label>
-    <input class="date-input" type="date" id="measureDateInput"/>
-    <div id="measureRows"></div>
-    <button class="btn-save-measures" onclick="saveMeasures()">Enregistrer</button>
-  </div>
-  <div class="history" id="historyBox" style="display:none">
-    <label>HISTORIQUE</label>
-    <div id="historyContent"></div>
-  </div>
-</div>
-
 </div>
 
 <script>
-// ── Constants ──────────────────────────────────────────────────────────────
-const START_WEIGHT = 77.4, GOAL_WEIGHT = 67.0;
-const TODAY = new Date(2026,4,15);
-const MONTHS_FR = ["Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Août","Septembre","Octobre","Novembre","Décembre"];
-const DAYS_FR = ["Dim","Lun","Mar","Mer","Jeu","Ven","Sam"];
-const MEASURES = [
-  {key:"taille",   label:"Tour de taille",    color:"#FF6B35"},
-  {key:"ventre_bas",label:"Ventre bas",        color:"#E91E63"},
-  {key:"hanches",  label:"Hanches",            color:"#2196F3"},
-  {key:"poitrine", label:"Poitrine",           color:"#9C27B0"},
-  {key:"bras",     label:"Bras (contracté)",   color:"#4CAF50"},
-  {key:"cuisse",   label:"Cuisse",             color:"#FF9800"},
+const START_W = 77.4, GOAL_W = 67.0;
+const MONTHS = ["Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Août","Septembre","Octobre","Novembre","Décembre"];
+const MONTHS_S = ["Jan","Fév","Mar","Avr","Mai","Jun","Jul","Aoû","Sep","Oct","Nov","Déc"];
+const DAYS = ["Dim","Lun","Mar","Mer","Jeu","Ven","Sam"];
+const MS = [
+  {key:"taille",   label:"Tour de taille",  color:"#FF6B35"},
+  {key:"ventre",   label:"Ventre bas",       color:"#E91E63"},
+  {key:"hanches",  label:"Hanches",          color:"#2196F3"},
+  {key:"poitrine", label:"Poitrine",         color:"#9C27B0"},
+  {key:"bras",     label:"Bras contracté",   color:"#4CAF50"},
+  {key:"cuisse",   label:"Cuisse",           color:"#FF9800"},
 ];
 
-// ── State ──────────────────────────────────────────────────────────────────
-let viewYear  = TODAY.getFullYear();
-let viewMonth = TODAY.getMonth();
-let selectedDay = TODAY.getDate();
-let activeMeasures = new Set(["taille","ventre_bas","hanches"]);
-let weightChartInst = null;
-let measureChartInst = null;
+function getToday(){const d=new Date();d.setHours(0,0,0,0);return d;}
+const TODAY = getToday();
 
-function dk(y,m,d){ return `${y}-${String(m+1).padStart(2,"0")}-${String(d).padStart(2,"0")}`; }
-function todayKey(){ return dk(TODAY.getFullYear(),TODAY.getMonth(),TODAY.getDate()); }
-function selKey(){ return dk(viewYear,viewMonth,selectedDay); }
-function daysInMonth(y,m){ return new Date(y,m+1,0).getDate(); }
-function firstDay(y,m){ return new Date(y,m,1).getDay(); }
-function isFuture(y,m,d){ return new Date(y,m,d) > TODAY; }
+let vYear = TODAY.getFullYear();
+let vMonth = TODAY.getMonth();
+let selDay = TODAY.getDate();
+let activeMes = new Set(["taille","ventre","hanches"]);
+let wChart = null, mChart = null;
 
-// ── Storage ────────────────────────────────────────────────────────────────
-function loadWeights(){ try{ return JSON.parse(localStorage.getItem("weights")||"{}"); }catch(e){return{};} }
-function saveWeights(w){ localStorage.setItem("weights",JSON.stringify(w)); }
-function loadMeasures(){ try{ return JSON.parse(localStorage.getItem("measures")||"{}"); }catch(e){return{};} }
-function saveMeasuresData(m){ localStorage.setItem("measures",JSON.stringify(m)); }
+function dkey(y,m,d){return `${y}-${String(m+1).padStart(2,"0")}-${String(d).padStart(2,"0")}`;}
+function selKey(){return dkey(vYear,vMonth,selDay);}
+function dim(y,m){return new Date(y,m+1,0).getDate();}
+function fd(y,m){return new Date(y,m,1).getDay();}
+function loadW(){try{return JSON.parse(localStorage.getItem("w")||"{}");}catch(e){return{};}}
+function saveW(o){localStorage.setItem("w",JSON.stringify(o));}
+function loadM(){try{return JSON.parse(localStorage.getItem("m")||"{}");}catch(e){return{};}}
+function saveM(o){localStorage.setItem("m",JSON.stringify(o));}
 
-// ── Tab switch ─────────────────────────────────────────────────────────────
 function switchTab(t){
-  document.querySelectorAll(".tab-btn").forEach((b,i)=>{
-    b.className = "tab-btn " + (["poids","mesures"][i]===t?"active":"inactive");
-  });
+  document.querySelectorAll(".tab-btn").forEach((b,i)=>{b.className="tab-btn "+((i===0&&t==="poids")||(i===1&&t==="mesures")?"active":"inactive");});
   document.querySelectorAll(".panel").forEach(p=>p.classList.remove("active"));
   document.getElementById("panel-"+t).classList.add("active");
-  if(t==="mesures") renderMeasures();
+  if(t==="mesures")renderMesures();
 }
 
-// ── Progress ───────────────────────────────────────────────────────────────
 function updateProgress(){
-  const weights = loadWeights();
-  const vals = Object.values(weights);
-  const latest = vals.length ? vals[vals.length-1] : START_WEIGHT;
-  const pct = Math.max(0,Math.min(100,((START_WEIGHT-latest)/(START_WEIGHT-GOAL_WEIGHT))*100));
-  document.getElementById("progressFill").style.width = pct.toFixed(1)+"%";
-  document.getElementById("progressPct").textContent =
-    pct.toFixed(1)+"% atteint" + (vals.length ? ` · Dernier : ${latest.toFixed(1)} kg` : "");
+  const vals=Object.values(loadW());
+  const latest=vals.length?vals[vals.length-1]:START_W;
+  const pct=Math.max(0,Math.min(100,((START_W-latest)/(START_W-GOAL_W))*100));
+  document.getElementById("progressFill").style.width=pct.toFixed(1)+"%";
+  document.getElementById("progressPct").textContent=pct.toFixed(1)+"% atteint"+(vals.length?" · Dernier : "+latest.toFixed(1)+" kg":"");
 }
 
-// ── Calendar ───────────────────────────────────────────────────────────────
-function renderCalendar(){
-  const weights = loadWeights();
-  const dim = daysInMonth(viewYear,viewMonth);
-  const fd  = firstDay(viewYear,viewMonth);
-
-  // month label
-  document.getElementById("monthLabel").textContent = MONTHS_FR[viewMonth]+" "+viewYear;
-
-  // nav buttons
-  const minDiff = (viewYear-TODAY.getFullYear())*12+(viewMonth-TODAY.getMonth());
-  document.getElementById("btnPrev").disabled = minDiff <= 0;
-  document.getElementById("btnNext").disabled = minDiff >= 5;
-
-  // grid
-  const grid = document.getElementById("calGrid");
-  grid.innerHTML = "";
-
-  // headers
-  DAYS_FR.forEach(d=>{
+function renderCal(){
+  const weights=loadW();
+  const d=dim(vYear,vMonth), f=fd(vYear,vMonth);
+  document.getElementById("monthLabel").textContent=MONTHS[vMonth]+" "+vYear;
+  const grid=document.getElementById("calGrid");
+  grid.innerHTML="";
+  DAYS.forEach(d=>{const e=document.createElement("div");e.style.cssText="text-align:center;font-size:9px;color:#444;font-weight:700;padding-bottom:3px;";e.textContent=d;grid.appendChild(e);});
+  for(let i=0;i<f;i++){const e=document.createElement("div");grid.appendChild(e);}
+  for(let day=1;day<=d;day++){
+    const k=dkey(vYear,vMonth,day);
+    const w=weights[k];
+    const isToday=vYear===TODAY.getFullYear()&&vMonth===TODAY.getMonth()&&day===TODAY.getDate();
+    const isSel=day===selDay;
     const el=document.createElement("div");
-    el.className="cal-header-day"; el.textContent=d; grid.appendChild(el);
-  });
-
-  // empty offset
-  for(let i=0;i<fd;i++){
-    const el=document.createElement("div"); el.className="cal-day empty"; grid.appendChild(el);
-  }
-
-  // days
-  for(let d=1;d<=dim;d++){
-    const key=dk(viewYear,viewMonth,d);
-    const w=weights[key];
-    const isT=viewYear===TODAY.getFullYear()&&viewMonth===TODAY.getMonth()&&d===TODAY.getDate();
-    const isSel=d===selectedDay;
-    const isFut=isFuture(viewYear,viewMonth,d);
-
-    const el=document.createElement("div");
-    let cls="cal-day";
-    if(isFut) cls+=" future";
-    else if(isSel) cls+=" selected";
-    else if(w!=null) cls+=" has-weight";
-    if(isT&&!isSel) cls+=" today";
-    el.className=cls;
-
-    el.innerHTML=`<div class="day-num">${d}</div><div class="day-weight">${w!=null?w.toFixed(1):"·"}</div>`;
-    if(!isFut) el.onclick=()=>selectDay(d);
+    el.className="cal-day"+(isSel?" selected":w!=null?" has-weight":"")+(isToday&&!isSel?" today":"");
+    el.innerHTML=`<div class="cal-day-num">${day}</div><div class="cal-day-weight">${w!=null?w.toFixed(1):"·"}</div>`;
+    el.onclick=()=>selectDay(day);
     grid.appendChild(el);
   }
-
-  // input label + confirm
   renderInputPanel();
   renderWeekAvgs();
-  renderWeightChart();
+  renderWChart();
 }
 
-function selectDay(d){
-  selectedDay=d;
-  renderCalendar();
-}
+function selectDay(day){selDay=day;renderCal();}
 
 function renderInputPanel(){
-  const weights=loadWeights();
-  const w=weights[selKey()];
-  const MONTHS_SHORT=["Jan","Fév","Mar","Avr","Mai","Jun","Jul","Aoû","Sep","Oct","Nov","Déc"];
-  document.getElementById("inputLabel").textContent=`PESÉE — ${selectedDay} ${MONTHS_SHORT[viewMonth].toUpperCase()}. ${viewYear}`;
-  document.getElementById("weightInput").value = w!=null ? w : "";
-  document.getElementById("weightInput").placeholder = w!=null ? String(w) : "ex: 77.4";
-  document.getElementById("btnDelete").style.display = w!=null ? "" : "none";
-  document.getElementById("savedConfirm").textContent = w!=null ? `✓ ${w.toFixed(2)} kg enregistré ce jour` : "";
+  const w=loadW()[selKey()];
+  document.getElementById("inputLabel").textContent=`PESÉE — ${selDay} ${MONTHS_S[vMonth].toUpperCase()}. ${vYear}`;
+  document.getElementById("weightInput").value=w!=null?w:"";
+  document.getElementById("weightInput").placeholder=w!=null?String(w):"ex: 77.4";
+  document.getElementById("btnDel").style.display=w!=null?"":"none";
+  document.getElementById("savedMsg").textContent=w!=null?`✓ ${w.toFixed(2)} kg enregistré ce jour`:"";
 }
 
 function saveWeight(){
-  const raw=document.getElementById("weightInput").value.replace(",",".");
-  const v=parseFloat(raw);
-  if(isNaN(v)||v<40||v>200) return;
-  const weights=loadWeights();
-  weights[selKey()]=v;
-  saveWeights(weights);
-  updateProgress();
-  renderCalendar();
+  const v=parseFloat(document.getElementById("weightInput").value.replace(",","."));
+  if(isNaN(v)||v<40||v>200)return;
+  const o=loadW();o[selKey()]=v;saveW(o);updateProgress();renderCal();
 }
 
 function deleteWeight(){
-  const weights=loadWeights();
-  delete weights[selKey()];
-  saveWeights(weights);
-  updateProgress();
-  renderCalendar();
+  const o=loadW();delete o[selKey()];saveW(o);updateProgress();renderCal();
 }
 
-// ── Weight chart ───────────────────────────────────────────────────────────
-function renderWeightChart(){
-  const weights=loadWeights();
-  const dim=daysInMonth(viewYear,viewMonth);
+function renderWChart(){
+  const weights=loadW();
+  const days=dim(vYear,vMonth);
   const labels=[],data=[];
-  for(let d=1;d<=dim;d++){
-    const w=weights[dk(viewYear,viewMonth,d)];
-    if(w!=null){labels.push(String(d));data.push(w);}
-  }
+  for(let d=1;d<=days;d++){const w=weights[dkey(vYear,vMonth,d)];if(w!=null){labels.push(String(d));data.push(w);}}
   const box=document.getElementById("chartBox");
   if(data.length<2){box.style.display="none";return;}
   box.style.display="";
   const ctx=document.getElementById("weightChart").getContext("2d");
-  if(weightChartInst){weightChartInst.destroy();}
-  weightChartInst=new Chart(ctx,{
-    type:"line",
-    data:{labels,datasets:[{
-      label:"Poids",data,
-      borderColor:"#FF6B35",backgroundColor:"#FF6B3522",
-      pointBackgroundColor:"#FF6B35",pointRadius:4,tension:0.3,fill:true,
-    }]},
-    options:{
-      responsive:true,
-      plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.parsed.y.toFixed(2)+" kg"}}},
-      scales:{
-        x:{grid:{color:"#1E1E3A"},ticks:{color:"#555",font:{size:9}}},
-        y:{grid:{color:"#1E1E3A"},ticks:{color:"#555",font:{size:9}},
-          min:GOAL_WEIGHT-1,
-          afterDataLimits(scale){scale.min=Math.min(scale.min,GOAL_WEIGHT-0.5);},
-        },
-      },
-      annotation:{annotations:{goal:{type:"line",yMin:GOAL_WEIGHT,yMax:GOAL_WEIGHT,borderColor:"#4CAF50",borderDash:[4,4]}}},
-    }
-  });
+  if(wChart)wChart.destroy();
+  wChart=new Chart(ctx,{type:"line",data:{labels,datasets:[{label:"Poids",data,borderColor:"#FF6B35",backgroundColor:"#FF6B3522",pointBackgroundColor:"#FF6B35",pointRadius:4,tension:0.3,fill:true}]},options:{responsive:true,plugins:{legend:{display:false}},scales:{x:{grid:{color:"#1E1E3A"},ticks:{color:"#555",font:{size:9}}},y:{grid:{color:"#1E1E3A"},ticks:{color:"#555",font:{size:9}}}}}});
 }
 
-// ── Week averages ──────────────────────────────────────────────────────────
 function renderWeekAvgs(){
-  const weights=loadWeights();
-  const dim=daysInMonth(viewYear,viewMonth);
+  const weights=loadW();
+  const days=dim(vYear,vMonth);
   const container=document.getElementById("weekAvgs");
   container.innerHTML="";
   let week=[];
-  for(let d=1;d<=dim;d++){
+  for(let d=1;d<=days;d++){
     week.push(d);
-    const dow=new Date(viewYear,viewMonth,d).getDay();
-    if(dow===0||d===dim){
-      const vals=week.map(x=>weights[dk(viewYear,viewMonth,x)]).filter(v=>v!=null);
+    if(new Date(vYear,vMonth,d).getDay()===0||d===days){
+      const vals=week.map(x=>weights[dkey(vYear,vMonth,x)]).filter(v=>v!=null);
       if(vals.length){
         const avg=(vals.reduce((a,b)=>a+b,0)/vals.length).toFixed(2);
-        const el=document.createElement("div"); el.className="week-avg";
-        const m=String(viewMonth+1).padStart(2,"0");
-        el.innerHTML=`<span>Semaine · ${week[0]}/${m} → ${week[week.length-1]}/${m}</span><span>Moy. ${avg} kg</span>`;
+        const m=String(vMonth+1).padStart(2,"0");
+        const el=document.createElement("div");el.className="week-avg";
+        el.innerHTML=`<span>${week[0]}/${m} → ${week[week.length-1]}/${m}</span><span>Moy. ${avg} kg</span>`;
         container.appendChild(el);
       }
       week=[];
@@ -375,147 +279,93 @@ function renderWeekAvgs(){
   }
 }
 
-// ── Month navigation ───────────────────────────────────────────────────────
 function changeMonth(dir){
-  viewMonth+=dir;
-  if(viewMonth<0){viewMonth=11;viewYear--;}
-  if(viewMonth>11){viewMonth=0;viewYear++;}
-  selectedDay=1;
-  renderCalendar();
+  vMonth+=dir;
+  if(vMonth<0){vMonth=11;vYear--;}
+  if(vMonth>11){vMonth=0;vYear++;}
+  selDay=1;renderCal();
 }
 
-// ── Measures ───────────────────────────────────────────────────────────────
-function renderMeasures(){
-  renderFilterChips();
-  renderMeasureRows();
-  renderMeasureChart();
-  renderHistory();
+function renderMesures(){
+  renderChips();
+  renderMRows();
+  renderMChart();
+  renderHist();
 }
 
-function renderFilterChips(){
-  const container=document.getElementById("filterChips");
-  container.innerHTML="";
-  MEASURES.forEach(m=>{
-    const btn=document.createElement("button");
-    btn.className="chip";
-    const on=activeMeasures.has(m.key);
-    btn.style.borderColor=on?m.color:"#2A2A4A";
-    btn.style.background=on?m.color+"22":"transparent";
-    btn.style.color=on?m.color:"#555";
+function renderChips(){
+  const c=document.getElementById("filterChips");c.innerHTML="";
+  MS.forEach(m=>{
+    const on=activeMes.has(m.key);
+    const btn=document.createElement("button");btn.className="chip";
+    btn.style.borderColor=on?m.color:"#2A2A4A";btn.style.background=on?m.color+"22":"transparent";btn.style.color=on?m.color:"#555";
     btn.textContent=m.label;
-    btn.onclick=()=>{
-      if(activeMeasures.has(m.key)) activeMeasures.delete(m.key);
-      else activeMeasures.add(m.key);
-      renderMeasures();
-    };
-    container.appendChild(btn);
+    btn.onclick=()=>{if(activeMes.has(m.key))activeMes.delete(m.key);else activeMes.add(m.key);renderMesures();};
+    c.appendChild(btn);
   });
 }
 
-function renderMeasureRows(){
-  // Default date = today
-  const ti=document.getElementById("measureDateInput");
-  if(!ti.value) ti.value=dk(TODAY.getFullYear(),TODAY.getMonth(),TODAY.getDate());
-  const container=document.getElementById("measureRows");
-  container.innerHTML="";
-  MEASURES.forEach(m=>{
-    const row=document.createElement("div"); row.className="measure-row";
-    row.innerHTML=`
-      <div class="measure-dot" style="background:${m.color}"></div>
-      <span>${m.label}</span>
-      <input class="measure-input" type="number" step="0.5" placeholder="—" id="mi_${m.key}" inputmode="decimal"/>
-      <span class="measure-unit">cm</span>`;
-    container.appendChild(row);
+function renderMRows(){
+  const ti=document.getElementById("mDateInput");
+  if(!ti.value){const t=getToday();ti.value=dkey(t.getFullYear(),t.getMonth(),t.getDate());}
+  const c=document.getElementById("mRows");c.innerHTML="";
+  MS.forEach(m=>{
+    const row=document.createElement("div");row.className="m-row";
+    row.innerHTML=`<div class="m-dot" style="background:${m.color}"></div><span class="m-label">${m.label}</span><input class="m-input" type="number" step="0.5" placeholder="—" id="mi_${m.key}" inputmode="decimal"/><span class="m-unit">cm</span>`;
+    c.appendChild(row);
   });
 }
 
 function saveMeasures(){
-  const dateVal=document.getElementById("measureDateInput").value;
-  if(!dateVal) return;
-  const ms=loadMeasures();
-  const entry=ms[dateVal]||{};
-  let changed=false;
-  MEASURES.forEach(m=>{
-    const inp=document.getElementById("mi_"+m.key);
-    if(!inp) return;
-    const v=parseFloat(inp.value.replace(",","."));
-    if(!isNaN(v)&&v>0){entry[m.key]=v;changed=true;}
-  });
-  if(!changed) return;
-  ms[dateVal]=entry;
-  saveMeasuresData(ms);
-  MEASURES.forEach(m=>{const i=document.getElementById("mi_"+m.key);if(i)i.value="";});
-  renderMeasures();
+  const date=document.getElementById("mDateInput").value;
+  if(!date)return;
+  const all=loadM();const entry=all[date]||{};let changed=false;
+  MS.forEach(m=>{const i=document.getElementById("mi_"+m.key);if(!i)return;const v=parseFloat(i.value.replace(",","."));if(!isNaN(v)&&v>0){entry[m.key]=v;changed=true;}});
+  if(!changed)return;
+  all[date]=entry;saveM(all);
+  MS.forEach(m=>{const i=document.getElementById("mi_"+m.key);if(i)i.value="";});
+  renderMesures();
 }
 
-function renderMeasureChart(){
-  const ms=loadMeasures();
-  const dates=Object.keys(ms).sort();
-  const box=document.getElementById("measureChartBox");
-  const noData=document.getElementById("noMeasureChart");
-  if(dates.length<2){box.style.display="none";noData.style.display="";return;}
-  box.style.display="";noData.style.display="none";
-
+function renderMChart(){
+  const all=loadM();const dates=Object.keys(all).sort();
+  const box=document.getElementById("mChartBox"),nd=document.getElementById("noMChart");
+  if(dates.length<2){box.style.display="none";nd.style.display="";return;}
+  box.style.display="";nd.style.display="none";
   const labels=dates.map(d=>d.slice(5).replace("-","/"));
-  const datasets=MEASURES.filter(m=>activeMeasures.has(m.key)).map(m=>({
-    label:m.label,
-    data:dates.map(d=>ms[d]?.[m.key]??null),
-    borderColor:m.color,backgroundColor:m.color+"33",
-    pointBackgroundColor:m.color,pointRadius:4,tension:0.3,spanGaps:false,
-  }));
-
+  const datasets=MS.filter(m=>activeMes.has(m.key)).map(m=>({label:m.label,data:dates.map(d=>all[d]?.[m.key]??null),borderColor:m.color,backgroundColor:m.color+"33",pointBackgroundColor:m.color,pointRadius:4,tension:0.3,spanGaps:false}));
   const ctx=document.getElementById("measureChart").getContext("2d");
-  if(measureChartInst){measureChartInst.destroy();}
-  measureChartInst=new Chart(ctx,{
-    type:"line",
-    data:{labels,datasets},
-    options:{
-      responsive:true,
-      plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.dataset.label+": "+c.parsed.y+" cm"}}},
-      scales:{
-        x:{grid:{color:"#1E1E3A"},ticks:{color:"#555",font:{size:9}}},
-        y:{grid:{color:"#1E1E3A"},ticks:{color:"#555",font:{size:9}}},
-      },
-    }
-  });
+  if(mChart)mChart.destroy();
+  mChart=new Chart(ctx,{type:"line",data:{labels,datasets},options:{responsive:true,plugins:{legend:{display:false}},scales:{x:{grid:{color:"#1E1E3A"},ticks:{color:"#555",font:{size:9}}},y:{grid:{color:"#1E1E3A"},ticks:{color:"#555",font:{size:9}}}}}});
 }
 
-function renderHistory(){
-  const ms=loadMeasures();
-  const dates=Object.keys(ms).sort().reverse();
-  const box=document.getElementById("historyBox");
-  const content=document.getElementById("historyContent");
+function renderHist(){
+  const all=loadM();const dates=Object.keys(all).sort().reverse();
+  const box=document.getElementById("histBox"),content=document.getElementById("histContent");
   if(!dates.length){box.style.display="none";return;}
-  box.style.display="";
-  content.innerHTML="";
+  box.style.display="";content.innerHTML="";
   dates.forEach((dk,idx)=>{
     const prevDk=dates[idx+1];
-    const entry=document.createElement("div"); entry.className="history-entry";
-    const d=dk.split("-").reverse().join("/");
-    entry.innerHTML=`<div class="history-date">${d}</div>`;
-    const cards=document.createElement("div"); cards.className="history-cards";
-    MEASURES.forEach(m=>{
-      const val=ms[dk]?.[m.key];
-      if(val==null) return;
-      const prev=prevDk?ms[prevDk]?.[m.key]:null;
+    const entry=document.createElement("div");entry.className="h-entry";
+    entry.innerHTML=`<div class="h-date">${dk.split("-").reverse().join("/")}</div>`;
+    const cards=document.createElement("div");cards.className="h-cards";
+    MS.forEach(m=>{
+      const val=all[dk]?.[m.key];if(val==null)return;
+      const prev=prevDk?all[prevDk]?.[m.key]:null;
       const delta=prev!=null?val-prev:null;
-      const deltaStr=delta!=null?`<div class="hc-delta" style="color:${delta<0?"#4CAF50":delta>0?"#f44336":"#666"}">${delta>0?"+":""}${delta.toFixed(1)}</div>`:"";
-      const card=document.createElement("div");
-      card.className="history-card";
-      card.style.borderLeftColor=m.color;
-      card.innerHTML=`<div class="hc-label">${m.label}</div><div class="hc-val" style="color:${m.color}">${val} cm</div>${deltaStr}`;
+      const dc=delta!=null?(delta<0?"#4CAF50":delta>0?"#f44336":"#666"):"";
+      const ds=delta!=null?`<div class="h-card-delta" style="color:${dc}">${delta>0?"+":""}${delta.toFixed(1)}</div>`:"";
+      const card=document.createElement("div");card.className="h-card";card.style.borderLeftColor=m.color;
+      card.innerHTML=`<div class="h-card-label">${m.label}</div><div class="h-card-val" style="color:${m.color}">${val} cm</div>${ds}`;
       cards.appendChild(card);
     });
-    entry.appendChild(cards);
-    content.appendChild(entry);
+    entry.appendChild(cards);content.appendChild(entry);
   });
 }
 
-// ── Init ───────────────────────────────────────────────────────────────────
+// Init
 updateProgress();
-renderCalendar();
-renderMeasureRows();
-document.getElementById("measureDateInput").value=dk(TODAY.getFullYear(),TODAY.getMonth(),TODAY.getDate());
+renderCal();
 </script>
 
 </body>
